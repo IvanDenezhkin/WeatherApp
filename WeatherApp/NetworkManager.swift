@@ -19,7 +19,7 @@ class NetworkManager{
     
     private init(){}
     
-    func getWeatherData(forCoordinates coordinates: CLLocationCoordinate2D, completion: @escaping ((temp: Double, description: String, icon: String)?)->()){
+    func getWeatherData(forCoordinates coordinates: CLLocationCoordinate2D, completion: @escaping ((success: Bool,(temp: Double, description: String, icon: String)?))->()){
         let params: [String : Any] = ["lat"  : coordinates.latitude,
                                       "lon"  : coordinates.longitude,
                                       "units": "metric",
@@ -27,20 +27,23 @@ class NetworkManager{
                                       "APPID": apiKey]
         
         Alamofire.request(baseURL, method: .get, parameters: params).responseJSON { data in
-            guard let jsonData = data.value else { return }
+            guard let jsonData = data.value else {completion((false,nil))
+                                                  return }
             let json           = JSON(jsonData)
             let temperature    = json["main"]["temp"].doubleValue
             let iconName       = json["weather"][0]["icon"].stringValue
             let description    = json["weather"][0]["description"].stringValue
-            completion((temperature, description, iconName))
+            completion((true,(temperature, description, iconName)))
         }
     }
     
-    func getIcon(iconName: String, completion: @escaping (Data?)->()){
+    func getIcon(iconName: String, completion: @escaping (_ success: Bool, _ imageData: Data?) ->()){
         let url = iconsURL + iconName + ".png"
         Alamofire.request(url).responseData{ data in
             if let imageData = data.value{
-                completion(imageData)
+                completion(true, imageData)
+            } else {
+                completion(false,nil)
             }
         }
     }

@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		291C1E431EF46776006DD2D5 /* City.swift in Sources */ = {isa = PBXBuildFile; fileRef = 291C1E421EF46776006DD2D5 /* City.swift */; };
+		2993E1C31EF488E600D37B7D /* ViewControllerExtentions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2993E1C21EF488E600D37B7D /* ViewControllerExtentions.swift */; };
 		29AA14051EF44E4900011A16 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29AA14041EF44E4900011A16 /* AppDelegate.swift */; };
 		29AA14071EF44E4900011A16 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29AA14061EF44E4900011A16 /* ViewController.swift */; };
 		29AA140A1EF44E4900011A16 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 29AA14081EF44E4900011A16 /* Main.storyboard */; };
@@ -21,6 +22,7 @@
 
 /* Begin PBXFileReference section */
 		291C1E421EF46776006DD2D5 /* City.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = City.swift; sourceTree = "<group>"; };
+		2993E1C21EF488E600D37B7D /* ViewControllerExtentions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewControllerExtentions.swift; sourceTree = "<group>"; };
 		29AA14011EF44E4900011A16 /* WeatherApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WeatherApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		29AA14041EF44E4900011A16 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		29AA14061EF44E4900011A16 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -95,6 +97,7 @@
 				29AA141C1EF45C9D00011A16 /* NetworkManager.swift */,
 				29AA14161EF4523C00011A16 /* LocationProvider.swift */,
 				29AA14191EF4535500011A16 /* Utils.swift */,
+				2993E1C21EF488E600D37B7D /* ViewControllerExtentions.swift */,
 			);
 			name = Service;
 			sourceTree = "<group>";
@@ -251,6 +254,7 @@
 				29AA14171EF4523C00011A16 /* LocationProvider.swift in Sources */,
 				29AA14071EF44E4900011A16 /* ViewController.swift in Sources */,
 				291C1E431EF46776006DD2D5 /* City.swift in Sources */,
+				2993E1C31EF488E600D37B7D /* ViewControllerExtentions.swift in Sources */,
 				29AA141D1EF45C9D00011A16 /* NetworkManager.swift in Sources */,
 				29AA14051EF44E4900011A16 /* AppDelegate.swift in Sources */,
 				29AA141A1EF4535500011A16 /* Utils.swift in Sources */,

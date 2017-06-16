@@ -57,11 +57,15 @@ class ViewController: UIViewController {
         temperatureLabel.text = String(format: " %.0f˚ ", city.temperature!)
         weatherDescriptionLabel.text = city.weatherDescription
         
-        NetworkManager.shared.getIcon(iconName: city.iconName) { data in
+        NetworkManager.shared.getIcon(iconName: city.iconName) { success, data in
+            if success {
             guard let pictureData = data else { return }
                 self.iconImageView.image = UIImage(data: pictureData)
                 self.WeatherView.isHidden = false
                 self.ActivityIndicator.stopAnimating()
+            }else {
+                self.pushAlert(text: "No connection")
+            }
         }
     }
     
@@ -81,12 +85,15 @@ class ViewController: UIViewController {
             let coordinates = userInfo["coordinates"] as! CLLocationCoordinate2D
             let city        = userInfo["city"]        as! String
             
-            NetworkManager.shared.getWeatherData(forCoordinates: coordinates){ tempTuple in
-                if let tuple = tempTuple {
+            NetworkManager.shared.getWeatherData(forCoordinates: coordinates){ success, tempTuple in
+                if success {
+                    guard let tuple = tempTuple else { return }
                     let newCity = City.init(name: city, coordinates: coordinates,
                                             temperature: tuple.temp, iconName: tuple.icon,
                                             weatherDescription: tuple.description)
                     self.currentCity = newCity
+                } else {
+                    self.pushAlert(text: "Something goes wrong")
                 }
             }
         }
