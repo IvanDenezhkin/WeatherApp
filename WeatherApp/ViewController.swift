@@ -16,6 +16,7 @@ class ViewController: UIViewController {
     @IBOutlet weak var iconImageView: UIImageView!
     @IBOutlet weak var temperatureLabel: UILabel!
     @IBOutlet weak var WeatherView: UIView!
+    @IBOutlet weak var ActivityIndicator: UIActivityIndicatorView!
     
     let locationProvider = LocationProvider.shared
     var refreshControl: UIRefreshControl!
@@ -25,13 +26,18 @@ class ViewController: UIViewController {
         }
     }
     
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         subscribeForNotifications()
         setRefreshControl()
-        self.WeatherView.isHidden = true
+        presets()
     }
     
+    func presets(){
+        WeatherView.isHidden = true
+        ActivityIndicator.startAnimating()
+    }
     func setRefreshControl(){
         refreshControl = UIRefreshControl()
         refreshControl.attributedTitle = NSAttributedString(string: "Pull to refresh")
@@ -53,6 +59,7 @@ class ViewController: UIViewController {
             guard let pictureData = data else { return }
                 self.iconImageView.image = UIImage(data: pictureData)
                 self.WeatherView.isHidden = false
+                self.ActivityIndicator.stopAnimating()
         }
     }
     

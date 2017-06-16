@@ -24,6 +24,10 @@
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" translatesAutoresizingMaskIntoConstraints="NO" id="9Xm-Af-FJv">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                                 <subviews>
+                                    <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" animating="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="tCk-8b-2zB">
+                                        <rect key="frame" x="169" y="315" width="37" height="37"/>
+                                        <color key="color" red="0.13820877379999999" green="0.53695916779999997" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    </activityIndicatorView>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="64n-sv-VFs">
                                         <rect key="frame" x="0.0" y="0.0" width="375" height="666"/>
                                         <subviews>
@@ -72,7 +76,9 @@
                                     <constraint firstItem="64n-sv-VFs" firstAttribute="top" secondItem="9Xm-Af-FJv" secondAttribute="top" id="1xD-3d-VNw"/>
                                     <constraint firstAttribute="trailing" secondItem="64n-sv-VFs" secondAttribute="trailing" id="9g5-RK-hnS"/>
                                     <constraint firstAttribute="bottom" secondItem="64n-sv-VFs" secondAttribute="bottom" id="HoH-Um-ixB"/>
+                                    <constraint firstItem="tCk-8b-2zB" firstAttribute="centerX" secondItem="9Xm-Af-FJv" secondAttribute="centerX" id="aXP-bd-URd"/>
                                     <constraint firstItem="64n-sv-VFs" firstAttribute="leading" secondItem="9Xm-Af-FJv" secondAttribute="leading" id="nSa-lx-Vqj"/>
+                                    <constraint firstItem="tCk-8b-2zB" firstAttribute="centerY" secondItem="9Xm-Af-FJv" secondAttribute="centerY" id="wrR-Yn-nMT"/>
                                 </constraints>
                                 <connections>
                                     <outlet property="delegate" destination="BYZ-38-t0r" id="Ugm-Rn-ivB"/>
@@ -89,6 +95,7 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="ActivityIndicator" destination="tCk-8b-2zB" id="dgL-Pt-a0V"/>
                         <outlet property="WeatherView" destination="64n-sv-VFs" id="XRf-Jn-U4V"/>
                         <outlet property="cityNameLabel" destination="JfX-JF-XRR" id="oeu-54-h6X"/>
                         <outlet property="iconImageView" destination="jHU-LX-RvZ" id="wSD-2M-rlJ"/>
