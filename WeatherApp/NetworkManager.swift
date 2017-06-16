@@ -19,7 +19,7 @@ class NetworkManager{
     private init(){
     }
  
-    func getWeatherData(forCoordinates coordinates: CLLocationCoordinate2D){
+    func getWeatherData(forCoordinates coordinates: CLLocationCoordinate2D, completion: @escaping ((temp: Double,icon: String))->()){
         let params: [String : Any] = ["lat"  : coordinates.latitude,
                                       "lon"  : coordinates.longitude,
                                       "units": "metric",
@@ -29,10 +29,7 @@ class NetworkManager{
             let json           = JSON(jsonData)
             let temperature    = json["main"]["temp"].doubleValue
             let iconName       = json["weather"][0]["icon"].stringValue
-            
-            print(temperature)
-            print(iconName)
-            
+            completion((temperature,iconName))
         }
     }
     

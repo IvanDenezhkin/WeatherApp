@@ -14,7 +14,11 @@ class ViewController: UIViewController {
     
     let locationProvider = LocationProvider.shared
     var refreshControl: UIRefreshControl!
-    
+    var currentCity: City?{
+        didSet{
+           print(currentCity?.name)
+        }
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -36,7 +40,7 @@ class ViewController: UIViewController {
     
     func subscribeForNotifications(){
         NotificationCenter.default.addObserver(self,
-                                               selector: #selector(updateUI),
+                                               selector: #selector(updateCity),
                                                name: NSNotification.Name(rawValue: Utils.Notification.coordinatesAndCity),
                                                object: nil)
     }
@@ -45,12 +49,15 @@ class ViewController: UIViewController {
         NotificationCenter.default.removeObserver(self, name: NSNotification.Name(rawValue: Utils.Notification.coordinatesAndCity), object: nil)
     }
     
-    func updateUI(notification: Notification){
+    func updateCity(notification: Notification){
         if let userInfo     = notification.userInfo   as? [String: Any] {
             let coordinates = userInfo["coordinates"] as! CLLocationCoordinate2D
             let city        = userInfo["city"]        as! String
             print(city)
-            NetworkManager.shared.getWeatherData(forCoordinates: coordinates)
+            NetworkManager.shared.getWeatherData(forCoordinates: coordinates){ tempTuple in
+                let newCity = City.init(name: city, coordinates: coordinates, temperature: tempTuple.temp, iconName: tempTuple.icon)
+                self.currentCity = newCity
+            }
         }
     }
     
