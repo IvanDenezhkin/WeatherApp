@@ -11,7 +11,7 @@ import CoreLocation
 
 class LocationProvider: NSObject {
     static let shared           = LocationProvider()
-    fileprivate var isFirstTime = true
+    fileprivate var isUpdated = false
     private let locationManager = CLLocationManager()
     
     private override init() {
@@ -20,13 +20,13 @@ class LocationProvider: NSObject {
     }
     
     func updateLocation(){
-        isFirstTime = true
+        isUpdated = false
         locationManager.startUpdatingLocation()
     }
     
     fileprivate func setup(){
         locationManager.delegate = self
-        locationManager.desiredAccuracy = kCLLocationAccuracyKilometer
+        locationManager.desiredAccuracy = kCLLocationAccuracyKilometer                      // lowAccuracy for weather app is ok
         locationManager.requestWhenInUseAuthorization()
         locationManager.startUpdatingLocation()
     }
@@ -47,8 +47,8 @@ class LocationProvider: NSObject {
 
 extension LocationProvider: CLLocationManagerDelegate{
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        if locations.first != nil && isFirstTime {
-            isFirstTime = false
+        if locations.first != nil && !isUpdated {
+            isUpdated = true
             manager.stopUpdatingLocation()
             getCityName(fromLocation: locations.first!)
         }

@@ -17,8 +17,21 @@ class ViewController: UIViewController {
     
     
     override func viewDidLoad() {
-        subscribeForNotifications()
         super.viewDidLoad()
+        subscribeForNotifications()
+        setRefreshControl()
+    }
+    
+    func setRefreshControl(){
+        refreshControl = UIRefreshControl()
+        refreshControl.attributedTitle = NSAttributedString(string: "Pull to refresh")
+        refreshControl.addTarget(self, action: #selector(updateData), for: UIControlEvents.valueChanged)
+        scrollView.addSubview(refreshControl)
+    }
+    
+    func updateData(sender:AnyObject){
+        locationProvider.updateLocation()
+        refreshControl.endRefreshing()
     }
     
     func subscribeForNotifications(){
