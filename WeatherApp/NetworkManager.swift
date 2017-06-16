@@ -15,11 +15,11 @@ class NetworkManager{
     static let shared = NetworkManager()
     private let apiKey = "28f1b4ac7abe6965f39838bda855939e"
     private let baseURL = "http://api.openweathermap.org/data/2.5/weather"
-    
+    private let iconsURL = "http://openweathermap.org/img/w/"
     private init(){
     }
  
-    func getWeatherData(forCoordinates coordinates: CLLocationCoordinate2D, completion: @escaping ((temp: Double,icon: String))->()){
+    func getWeatherData(forCoordinates coordinates: CLLocationCoordinate2D, completion: @escaping ((temp: Double,icon: String)?)->()){
         let params: [String : Any] = ["lat"  : coordinates.latitude,
                                       "lon"  : coordinates.longitude,
                                       "units": "metric",
@@ -33,5 +33,15 @@ class NetworkManager{
         }
     }
     
+    func getIcon(iconName: String, completion: @escaping (Data?)->()){
+        let url = iconsURL + iconName + ".png"
+        Alamofire.request(url).responseData{ data in
+            if let imageData = data.value{
+                completion(imageData)
+            }
+        }
+        
+    
+    }
     
 }

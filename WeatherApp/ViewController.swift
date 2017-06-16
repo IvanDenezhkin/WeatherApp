@@ -45,6 +45,10 @@ class ViewController: UIViewController {
         guard let city = currentCity else { return }
         cityNameLabel.text = city.name
         temperatureLabel.text = String(format: " %.0f˚", city.temperature!)
+        NetworkManager.shared.getIcon(iconName: city.iconName) { data in
+            guard let pictureData = data else { return }
+                self.iconImageView.image = UIImage(data: pictureData)
+        }
     }
     
     func subscribeForNotifications(){
@@ -62,10 +66,11 @@ class ViewController: UIViewController {
         if let userInfo     = notification.userInfo   as? [String: Any] {
             let coordinates = userInfo["coordinates"] as! CLLocationCoordinate2D
             let city        = userInfo["city"]        as! String
-            print(city)
             NetworkManager.shared.getWeatherData(forCoordinates: coordinates){ tempTuple in
-                let newCity = City.init(name: city, coordinates: coordinates, temperature: tempTuple.temp, iconName: tempTuple.icon)
-                self.currentCity = newCity
+                if let tuple = tempTuple {
+                    let newCity = City.init(name: city, coordinates: coordinates, temperature: tuple.temp, iconName: tuple.icon)
+                    self.currentCity = newCity
+                }
             }
         }
     }
