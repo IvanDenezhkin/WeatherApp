@@ -20,12 +20,12 @@ class ViewController: UIViewController {
     
     let locationProvider = LocationProvider.shared
     var refreshControl: UIRefreshControl!
+    
     var currentCity: City?{
         didSet{
            self.updateUI()
         }
     }
-    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -38,6 +38,7 @@ class ViewController: UIViewController {
         WeatherView.isHidden = true
         ActivityIndicator.startAnimating()
     }
+    
     func setRefreshControl(){
         refreshControl = UIRefreshControl()
         refreshControl.attributedTitle = NSAttributedString(string: "Pull to refresh")
@@ -55,6 +56,7 @@ class ViewController: UIViewController {
         cityNameLabel.text = city.name
         temperatureLabel.text = String(format: " %.0f˚ ", city.temperature!)
         weatherDescriptionLabel.text = city.weatherDescription
+        
         NetworkManager.shared.getIcon(iconName: city.iconName) { data in
             guard let pictureData = data else { return }
                 self.iconImageView.image = UIImage(data: pictureData)
@@ -78,6 +80,7 @@ class ViewController: UIViewController {
         if let userInfo     = notification.userInfo   as? [String: Any] {
             let coordinates = userInfo["coordinates"] as! CLLocationCoordinate2D
             let city        = userInfo["city"]        as! String
+            
             NetworkManager.shared.getWeatherData(forCoordinates: coordinates){ tempTuple in
                 if let tuple = tempTuple {
                     let newCity = City.init(name: city, coordinates: coordinates,

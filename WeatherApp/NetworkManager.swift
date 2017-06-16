@@ -16,9 +16,9 @@ class NetworkManager{
     private let apiKey = "28f1b4ac7abe6965f39838bda855939e"
     private let baseURL = "http://api.openweathermap.org/data/2.5/weather"
     private let iconsURL = "http://openweathermap.org/img/w/"
-    private init(){
-    }
- 
+    
+    private init(){}
+    
     func getWeatherData(forCoordinates coordinates: CLLocationCoordinate2D, completion: @escaping ((temp: Double, description: String, icon: String)?)->()){
         let params: [String : Any] = ["lat"  : coordinates.latitude,
                                       "lon"  : coordinates.longitude,
@@ -43,8 +43,5 @@ class NetworkManager{
                 completion(imageData)
             }
         }
-        
-    
     }
-    
 }
