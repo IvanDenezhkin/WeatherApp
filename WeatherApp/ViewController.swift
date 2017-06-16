@@ -11,12 +11,15 @@ import CoreLocation
 
 class ViewController: UIViewController {
     @IBOutlet weak var scrollView: UIScrollView!
+    @IBOutlet weak var cityNameLabel: UILabel!
+    @IBOutlet weak var iconImageView: UIImageView!
+    @IBOutlet weak var temperatureLabel: UILabel!
     
     let locationProvider = LocationProvider.shared
     var refreshControl: UIRefreshControl!
     var currentCity: City?{
         didSet{
-           print(currentCity?.name)
+           self.updateUI()
         }
     }
     
@@ -36,6 +39,12 @@ class ViewController: UIViewController {
     func updateData(sender:AnyObject){
         locationProvider.updateLocation()
         refreshControl.endRefreshing()
+    }
+    
+    func updateUI(){
+        guard let city = currentCity else { return }
+        cityNameLabel.text = city.name
+        temperatureLabel.text = String(format: " %.0f˚", city.temperature!)
     }
     
     func subscribeForNotifications(){
