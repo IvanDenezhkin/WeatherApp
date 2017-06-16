@@ -14,11 +14,13 @@ class City{
     let coordinates: CLLocationCoordinate2D!
     let temperature: Double!
     let iconName: String!
+    let weatherDescription: String!
     
-    init(name: String, coordinates: CLLocationCoordinate2D, temperature: Double, iconName: String){
+    init(name: String, coordinates: CLLocationCoordinate2D, temperature: Double, iconName: String, weatherDescription: String){
         self.name = name
         self.coordinates = coordinates
         self.temperature = temperature
         self.iconName = iconName
+        self.weatherDescription = weatherDescription
     }
 }

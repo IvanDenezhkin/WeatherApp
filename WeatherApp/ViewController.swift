@@ -11,7 +11,9 @@ import CoreLocation
 
 class ViewController: UIViewController {
     @IBOutlet weak var scrollView: UIScrollView!
+    @IBOutlet weak var weatheView: UIView!
     @IBOutlet weak var cityNameLabel: UILabel!
+    @IBOutlet weak var weatherDescriptionLabel: UILabel!
     @IBOutlet weak var iconImageView: UIImageView!
     @IBOutlet weak var temperatureLabel: UILabel!
     
@@ -27,6 +29,7 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         subscribeForNotifications()
         setRefreshControl()
+        weatheView.isHidden = true
     }
     
     func setRefreshControl(){
@@ -45,9 +48,11 @@ class ViewController: UIViewController {
         guard let city = currentCity else { return }
         cityNameLabel.text = city.name
         temperatureLabel.text = String(format: " %.0f˚", city.temperature!)
+        weatherDescriptionLabel.text = city.weatherDescription
         NetworkManager.shared.getIcon(iconName: city.iconName) { data in
             guard let pictureData = data else { return }
                 self.iconImageView.image = UIImage(data: pictureData)
+                self.weatheView.isHidden = false
         }
     }
     
@@ -68,7 +73,9 @@ class ViewController: UIViewController {
             let city        = userInfo["city"]        as! String
             NetworkManager.shared.getWeatherData(forCoordinates: coordinates){ tempTuple in
                 if let tuple = tempTuple {
-                    let newCity = City.init(name: city, coordinates: coordinates, temperature: tuple.temp, iconName: tuple.icon)
+                    let newCity = City.init(name: city, coordinates: coordinates,
+                                            temperature: tuple.temp, iconName: tuple.icon,
+                                            weatherDescription: tuple.description)
                     self.currentCity = newCity
                 }
             }

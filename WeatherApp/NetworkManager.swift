@@ -19,17 +19,20 @@ class NetworkManager{
     private init(){
     }
  
-    func getWeatherData(forCoordinates coordinates: CLLocationCoordinate2D, completion: @escaping ((temp: Double,icon: String)?)->()){
+    func getWeatherData(forCoordinates coordinates: CLLocationCoordinate2D, completion: @escaping ((temp: Double, description: String, icon: String)?)->()){
         let params: [String : Any] = ["lat"  : coordinates.latitude,
                                       "lon"  : coordinates.longitude,
                                       "units": "metric",
+                                      "lang" : "ua",
                                       "APPID": apiKey]
+        
         Alamofire.request(baseURL, method: .get, parameters: params).responseJSON { data in
             guard let jsonData = data.value else { return }
             let json           = JSON(jsonData)
             let temperature    = json["main"]["temp"].doubleValue
             let iconName       = json["weather"][0]["icon"].stringValue
-            completion((temperature,iconName))
+            let description    = json["weather"][0]["description"].stringValue
+            completion((temperature, description, iconName))
         }
     }
     
