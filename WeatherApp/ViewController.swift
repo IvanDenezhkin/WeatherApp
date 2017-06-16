@@ -49,7 +49,8 @@ class ViewController: UIViewController {
         if let userInfo     = notification.userInfo   as? [String: Any] {
             let coordinates = userInfo["coordinates"] as! CLLocationCoordinate2D
             let city        = userInfo["city"]        as! String
-            print(coordinates , city)
+            print(city)
+            NetworkManager.shared.getWeatherData(forCoordinates: coordinates)
         }
     }
     

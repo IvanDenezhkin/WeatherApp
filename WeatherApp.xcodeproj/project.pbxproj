@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		291C1E431EF46776006DD2D5 /* City.swift in Sources */ = {isa = PBXBuildFile; fileRef = 291C1E421EF46776006DD2D5 /* City.swift */; };
 		29AA14051EF44E4900011A16 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29AA14041EF44E4900011A16 /* AppDelegate.swift */; };
 		29AA14071EF44E4900011A16 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29AA14061EF44E4900011A16 /* ViewController.swift */; };
 		29AA140A1EF44E4900011A16 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 29AA14081EF44E4900011A16 /* Main.storyboard */; };
@@ -14,10 +15,12 @@
 		29AA140F1EF44E4900011A16 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 29AA140D1EF44E4900011A16 /* LaunchScreen.storyboard */; };
 		29AA14171EF4523C00011A16 /* LocationProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29AA14161EF4523C00011A16 /* LocationProvider.swift */; };
 		29AA141A1EF4535500011A16 /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29AA14191EF4535500011A16 /* Utils.swift */; };
+		29AA141D1EF45C9D00011A16 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29AA141C1EF45C9D00011A16 /* NetworkManager.swift */; };
 		81AED8896298EE11E1E2ED1F /* Pods_WeatherApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 519E6443EEDBF6DC5FDE214B /* Pods_WeatherApp.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		291C1E421EF46776006DD2D5 /* City.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = City.swift; sourceTree = "<group>"; };
 		29AA14011EF44E4900011A16 /* WeatherApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WeatherApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		29AA14041EF44E4900011A16 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		29AA14061EF44E4900011A16 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -27,6 +30,7 @@
 		29AA14101EF44E4900011A16 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		29AA14161EF4523C00011A16 /* LocationProvider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationProvider.swift; sourceTree = "<group>"; };
 		29AA14191EF4535500011A16 /* Utils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
+		29AA141C1EF45C9D00011A16 /* NetworkManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
 		519E6443EEDBF6DC5FDE214B /* Pods_WeatherApp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_WeatherApp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		86484B6D6B57753EC83E75E8 /* Pods-WeatherApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WeatherApp.debug.xcconfig"; path = "Pods/Target Support Files/Pods-WeatherApp/Pods-WeatherApp.debug.xcconfig"; sourceTree = "<group>"; };
 		8CEFF1BDF1CA1F0501CE4133 /* Pods-WeatherApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WeatherApp.release.xcconfig"; path = "Pods/Target Support Files/Pods-WeatherApp/Pods-WeatherApp.release.xcconfig"; sourceTree = "<group>"; };
@@ -44,6 +48,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		291C1E411EF4671D006DD2D5 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				291C1E421EF46776006DD2D5 /* City.swift */,
+			);
+			name = Models;
+			sourceTree = "<group>";
+		};
 		29AA13F81EF44E4900011A16 = {
 			isa = PBXGroup;
 			children = (
@@ -66,6 +78,7 @@
 			isa = PBXGroup;
 			children = (
 				29AA14041EF44E4900011A16 /* AppDelegate.swift */,
+				291C1E411EF4671D006DD2D5 /* Models */,
 				29AA14181EF4533800011A16 /* Service */,
 				29AA141B1EF458E900011A16 /* Controllers */,
 				29AA14081EF44E4900011A16 /* Main.storyboard */,
@@ -79,6 +92,7 @@
 		29AA14181EF4533800011A16 /* Service */ = {
 			isa = PBXGroup;
 			children = (
+				29AA141C1EF45C9D00011A16 /* NetworkManager.swift */,
 				29AA14161EF4523C00011A16 /* LocationProvider.swift */,
 				29AA14191EF4535500011A16 /* Utils.swift */,
 			);
@@ -236,6 +250,8 @@
 			files = (
 				29AA14171EF4523C00011A16 /* LocationProvider.swift in Sources */,
 				29AA14071EF44E4900011A16 /* ViewController.swift in Sources */,
+				291C1E431EF46776006DD2D5 /* City.swift in Sources */,
+				29AA141D1EF45C9D00011A16 /* NetworkManager.swift in Sources */,
 				29AA14051EF44E4900011A16 /* AppDelegate.swift in Sources */,
 				29AA141A1EF4535500011A16 /* Utils.swift in Sources */,
 			);
